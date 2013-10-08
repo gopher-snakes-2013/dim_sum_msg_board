@@ -1,2 +1,2 @@
-require './sinatra_to_heroku'
+require './app'
 run Sinatra::Application
