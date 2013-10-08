@@ -1,1 +1,1 @@
-web: bundle exec ruby sinatra_to_heroku.rb -p $PORT
+web: bundle exec ruby app.rb -p $PORT
