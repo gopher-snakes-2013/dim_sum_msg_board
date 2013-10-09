@@ -14,3 +14,7 @@ post '/' do
   redirect to('/')
 end
 
+get '/discussions/:id' do
+  @discussion = Discussion.find(params[:id])
+  erb :view
+end
