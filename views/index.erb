@@ -1,13 +1,16 @@
-<h1>"Here's our discussion board!"</h1>
+<h1>Here's our discussion board!</h1>
 
 <form method = "post" action = "/">
   <label>New Discusssion
-    <input type="text" name="todo_name">
+    <input type="text" name="discussion_title">
+
   </label>
 
   <input type="submit" value="Create Discussion">
 </form>
 
+<ul>
 <% @discussions.each do |discussion|%>
-<%= discussion.title %><br />
+<li><%= discussion.title %></li>
 <% end %>
+</ul>

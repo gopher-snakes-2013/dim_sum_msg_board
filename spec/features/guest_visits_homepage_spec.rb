@@ -7,6 +7,12 @@ feature "Guest visits homepage" do
   end
 end
 
+feature  "Guest can create discussion" do
+  scenario "Creates Discussion" do
+    visit '/'
+    expect(page).to have_content "discussion 1"
+  end
+end
 
 
 

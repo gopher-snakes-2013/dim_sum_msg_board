@@ -8,3 +8,9 @@ get '/' do
   @discussions = Discussion.all
   erb :index
 end
+
+post '/' do
+  Discussion.create(title: params[:discussion_title])
+  redirect to('/')
+end
+
