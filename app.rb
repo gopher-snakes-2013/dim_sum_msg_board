@@ -10,7 +10,7 @@ get '/' do
 end
 
 post '/' do
-  Discussion.create(title: params[:discussion_title])
+  Discussion.create(title: params[:discussion_title], body: params[:discussion_body])
   redirect to('/')
 end
 

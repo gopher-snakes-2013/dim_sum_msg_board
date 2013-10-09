@@ -2,12 +2,13 @@
 
 <form method = "post" action = "/">
   <label>New Discusssion
-    <input type="text" name="discussion_title">
-
+    <input type="text" name="discussion_title"><br>
   </label>
-
   <input type="submit" value="Create Discussion">
+  <textarea name="discussion_body"></textarea>
 </form>
+
+
 
 <ul>
 <% @discussions.each do |discussion|%>
