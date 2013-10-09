@@ -1,7 +1,7 @@
 <h1>Here's our discussion board!</h1>
 
-<form method = "post" action = "/">
-  <label>New Discusssion<br>
+<form method= "post" action = "/">
+  <label>New Discussion<br>
     <input type="text" name="discussion_title"><br>
   </label>
   <textarea name="discussion_body"></textarea><br>
@@ -12,6 +12,6 @@
 
 <ul>
 <% @discussions.each do |discussion|%>
-<li><%= discussion.title %></li>
+<li><a href= "/discussions/<%= discussion.id %>"><%= discussion.title %></a></li>
 <% end %>
 </ul>
