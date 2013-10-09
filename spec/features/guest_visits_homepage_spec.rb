@@ -18,15 +18,24 @@ feature  "Guest can create discussion" do
 
     expect(page).to have_content("let's talk about dimsum again")
   end
+
+   scenario "Click Discussion" do
+    visit '/discussions/:id'
+
+    expect(page).to have_content "hello"
+  end
+
+
 end
+
 
 feature "Guest can click on discussion links" do 
   scenario "Click Discussion" do
     visit '/'
 
-    click_on "discussion.title"
+    click_on "youwinsomeyoudimsum"
 
-    expect(page).to have_content "meow meow meow"
+    expect(page).to have_content "how awesome of a team name is this??"
   end
 end
 
