@@ -1,4 +1,3 @@
-
 class CreateDiscussions < ActiveRecord::Migration
   def up
     create_table :discussions do |t|

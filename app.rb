@@ -1,9 +1,16 @@
 require 'sinatra'
 require 'sinatra/activerecord'
-set :database, "sqlite3:///msg_board.db"
+require './app/models/discussion'
+set :database, "sqlite3:///db/msg_board.db"
 
 
 get '/' do
-  # @discussions = Discussions.all
-  "Hello world"
+  @discussions = Discussion.all
+  erb :index
 end
+
+post '/' do
+  Discussion.create(title: params[:discussion_title], body: params[:discussion_body])
+  redirect to('/')
+end
+
