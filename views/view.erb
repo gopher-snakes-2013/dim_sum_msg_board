@@ -1,3 +1,22 @@
+<a href="/">Home</a>
+<br>
 <h1><%= @discussion.title %></h1>
+
 <br>
 <%= @discussion.body %>
+<br>
+<hr>
+<br>
+<h3>Discussion comments</h3>
+<ul>
+  <% if @posts
+    <% @posts.each do |post| %>
+      <li><%= post.created_at %><br><%= post.body %><br>
+    <% end %>
+  <% end %>
+</ul>
+<br>
+<form method="post" action="/discussion/<%= @discussion.id %>">
+  <textarea name="discussion_post" rows=5 cols=50></textarea><br>
+  <input type="submit" value="comment">
+</form>
