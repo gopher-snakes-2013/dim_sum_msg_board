@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'sinatra/activerecord'
 require './app/models/discussion'
+require './app/models/post'
 
 set :database, ENV['DATABASE_URL'] || "sqlite3:///db/msg_board.db"
 
@@ -15,7 +16,16 @@ post '/' do
   redirect to('/')
 end
 
-get '/discussions/:id' do
-  @discussion = Discussion.find(params[:id])
+get '/discussion/:discussion_id' do
+  @discussion = Discussion.find(params[:discussion_id])
+  @posts = @discussion.posts.all
   erb :view
 end
+
+post '/discussion/:discussion_id' do
+  Post.create(body: params[:discussion_post], discussion_id: params[:discussion_id])
+  redirect to("/discussion/#{params[:discussion_id]}")
+end
+
+
+
