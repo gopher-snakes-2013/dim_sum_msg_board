@@ -20,22 +20,21 @@ feature  "Guest can create discussion" do
   end
 
    scenario "Click Discussion" do
-    visit '/discussions/:id'
+    visit '/discussion/:id'
 
     expect(page).to have_content "hello"
   end
-
-
 end
 
 
-feature "Guest can click on discussion links" do 
-  scenario "Click Discussion" do
-    visit '/'
+feature  "Guest can create posts" do
+  scenario "Creates Discussion" do
+    visit '/discussion/1'
 
-    click_on "youwinsomeyoudimsum"
+    fill_in "discussion_post", with: "taytay all day"
 
-    expect(page).to have_content "how awesome of a team name is this??"
+    click_on "comment"
+
+    expect(page).to have_content("taytay all day")
   end
 end
-
