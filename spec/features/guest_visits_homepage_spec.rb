@@ -24,6 +24,15 @@ feature  "Guest can create discussion" do
 
     expect(page).to have_content "hello"
   end
+
+  scenario "Search" do
+   visit '/'
+    fill_in "search_text", with: "let's talk about dimsum"
+
+    click_on "Find Sumthing!"
+
+    expect(page).to have_content ("let's talk about dimsum")
+  end
 end
 
 
@@ -38,3 +47,17 @@ feature  "Guest can create posts" do
     expect(page).to have_content("taytay all day")
   end
 end
+
+
+feature "Does Search Route Work" do
+  scenario "Search" do
+    visit '/'
+      fill_in "search_text", with: "derp"
+
+      click_on "Find Sumthing!"
+
+      expect(page).to have_content ("Here are those things you wanted")
+  end
+end
+
+
