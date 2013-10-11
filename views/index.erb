@@ -1,5 +1,13 @@
 <h1>Here's our discussion board!</h1>
 
+<form method= "post" action = "/search">
+    <label>Search Box<br>
+      <input type = "text" name = "search_text"><br>
+    </label>
+    <input type="submit" value ="Find Sumthing!">
+</form>
+
+
 <form method= "post" action = "/">
   <label>New Discussion<br>
     <input type="text" name="discussion_title"><br>
@@ -15,3 +23,4 @@
 <li><a href= "/discussion/<%= discussion.id %>"><%= discussion.title %></a></li>
 <% end %>
 </ul>
+

@@ -29,3 +29,11 @@ end
 
 
 
+get '/search/:search_text' do
+  @results = Discussion.where(title: params[:search_text])
+  erb :search
+end
+
+post '/search' do
+  redirect to("/search/#{params[:search_text]}")
+end
