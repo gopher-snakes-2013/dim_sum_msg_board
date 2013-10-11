@@ -13,6 +13,8 @@ feature  "Guest can create discussion" do
 
     fill_in "discussion_title", with: "let's talk about dimsum again"
     fill_in "discussion_body", with: "hello"
+    fill_in "username", with: "salarsucks"
+    fill_in "password", with: "password"
 
     click_on "Create Discussion"
 

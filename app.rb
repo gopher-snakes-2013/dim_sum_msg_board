@@ -1,5 +1,6 @@
-b xrequire 'sinatra'
+require 'sinatra'
 require 'sinatra/activerecord'
+require 'bcrypt'
 require './app/models/discussion'
 require './app/models/post'
 require './app/models/user'
@@ -13,8 +14,13 @@ get '/' do
 end
 
 post '/' do
-  Discussion.create(title: params[:discussion_title], body: params[:discussion_body])
-  redirect to('/')
+  user = User.find_by! username: params[:username]
+  if params[:password] == user.password
+    Discussion.create(title: params[:discussion_title], body: params[:discussion_body], user_id: user.id )
+    redirect to('/')
+  else
+    redirect to('/')
+  end
 end
 
 get '/discussion/:discussion_id' do
@@ -38,4 +44,11 @@ end
 
 post '/search' do
   redirect to("/search/#{params[:search_text]}")
+end
+
+
+post '/new_user' do
+  User.create(username: params[:username], password: params[:password], acct_type: 'user')
+  redirect to '/'
+
 end
