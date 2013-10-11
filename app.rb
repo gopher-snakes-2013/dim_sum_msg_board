@@ -15,7 +15,7 @@ end
 
 post '/' do
   user = User.find_by! username: params[:username]
-  if params[:password] == user.password
+  if user.password == params[:password]
     Discussion.create(title: params[:discussion_title], body: params[:discussion_body], user_id: user.id )
     redirect to('/')
   else
