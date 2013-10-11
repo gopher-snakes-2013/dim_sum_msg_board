@@ -2,6 +2,7 @@ require 'sinatra'
 require 'sinatra/activerecord'
 require './app/models/discussion'
 require './app/models/post'
+require './app/models/user'
 
 set :database, ENV['DATABASE_URL'] || "sqlite3:///db/msg_board.db"
 

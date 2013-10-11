@@ -15,4 +15,5 @@ group :development do
   gem 'shotgun'
   gem 'capybara'
   gem 'rspec'
+  gem 'shoulda-matchers'
 end
