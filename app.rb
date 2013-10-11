@@ -1,4 +1,4 @@
-require 'sinatra'
+b xrequire 'sinatra'
 require 'sinatra/activerecord'
 require './app/models/discussion'
 require './app/models/post'
