@@ -1,4 +1,4 @@
 <h1>Here are those things you wanted:</h1><br>
 <% @results.each do |discussion| %>
-<%= discussion.title %><br>
+<a href = "/discussion/<%discussion.id%>"><%= discussion.title %></a><br>
 <% end %>

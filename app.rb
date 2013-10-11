@@ -31,6 +31,7 @@ end
 
 get '/search/:search_text' do
   @results = Discussion.where(title: params[:search_text])
+  @results = Discussion.where("title like ?", "%#{params[:search_text]}%")
   erb :search
 end
 
