@@ -8,11 +8,21 @@ feature "Guest visits homepage" do
 end
 
 feature  "Guest can create discussion" do
+  scenario "Create User" do
+    visit '/'
+      fill_in "new_username", with: "salarsucks"
+      fill_in "new_password", with: "password"
+      click_on "Create User"
+    end
+
   scenario "Creates Discussion" do
     visit '/'
 
+
     fill_in "discussion_title", with: "let's talk about dimsum again"
     fill_in "discussion_body", with: "hello"
+    fill_in "username", with: "salarsucks"
+    fill_in "password", with: "password"
 
     click_on "Create Discussion"
 
@@ -27,11 +37,11 @@ feature  "Guest can create discussion" do
 
   scenario "Search" do
    visit '/'
-    fill_in "search_text", with: "let's talk about dimsum"
+    fill_in "search_text", with: "let's talk about dimsum again"
 
     click_on "Find Sumthing!"
 
-    expect(page).to have_content ("let's talk about dimsum")
+    expect(page).to have_content ("let's talk about dimsum again")
   end
 end
 

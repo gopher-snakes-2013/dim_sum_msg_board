@@ -1,26 +1,42 @@
 <h1>Here's our discussion board!</h1>
 
+<!-- Search box -->
 <form method= "post" action = "/search">
     <label>Search Box<br>
       <input type = "text" name = "search_text" ><br>
     </label>
     <input type="submit" value ="Find Sumthing!">
 </form>
+<br />
 
+<!-- Create User -->
+<form method="post" action = "/new_user">
+  <label>Create New User<br />
+  Username: <input type="text" name="new_username"></label>  Password:
+  <input type="password" name="new_password"><br />
+  <input type="submit" value="Create User">
+</form>
+<br />
+<br />
+
+<!-- New Discussion -->
 
 <form method= "post" action = "/">
   <label>New Discussion<br>
-    <input type="text" name="discussion_title"><br>
+    Title: <input type="text" name="discussion_title"><br>
   </label>
-  <textarea name="discussion_body"></textarea><br>
+  Body:<br /><textarea name="discussion_body"></textarea><br>
+  Username: <input type="text" name="username">  Password:
+  <input type="password" name="password"><br />
   <input type="submit" value="Create Discussion">
 </form>
 
 
-
+<!--List all discussions in database -->
 <ul>
 <% @discussions.each do |discussion|%>
-<li><a href= "/discussion/<%= discussion.id %>"><%= discussion.title %></a></li>
+<li><a href= "/discussion/<%= discussion.id %>"><%= discussion.title %></a>  by
+  <%= User.find(discussion.id).username %></li>
 <% end %>
 </ul>
 

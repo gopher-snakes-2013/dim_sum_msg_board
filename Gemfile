@@ -4,6 +4,7 @@ ruby "1.9.3"
 gem 'sinatra'
 gem "sinatra-activerecord"
 gem "rake"
+gem 'bcrypt-ruby'
 
 group :production do
   gem 'pg'
@@ -15,4 +16,5 @@ group :development do
   gem 'shotgun'
   gem 'capybara'
   gem 'rspec'
+  gem 'shoulda-matchers'
 end

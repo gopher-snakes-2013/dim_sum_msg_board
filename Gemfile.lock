@@ -18,6 +18,7 @@ GEM
       tzinfo (~> 0.3.37)
     arel (4.0.0)
     atomic (1.1.14)
+    bcrypt-ruby (3.1.2)
     builder (3.1.4)
     capybara (2.1.0)
       mime-types (>= 1.16)
@@ -51,6 +52,8 @@ GEM
     rspec-mocks (2.14.3)
     shotgun (0.9)
       rack (>= 1.0)
+    shoulda-matchers (2.4.0)
+      activesupport (>= 3.0.0)
     sinatra (1.4.3)
       rack (~> 1.4)
       rack-protection (~> 1.4)
@@ -70,12 +73,14 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt-ruby
   capybara
   dotenv
   pg
   rake
   rspec
   shotgun
+  shoulda-matchers
   sinatra
   sinatra-activerecord
   sqlite3

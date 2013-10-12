@@ -1,7 +1,9 @@
 require 'sinatra'
 require 'sinatra/activerecord'
+require 'bcrypt'
 require './app/models/discussion'
 require './app/models/post'
+require './app/models/user'
 
 set :database, ENV['DATABASE_URL'] || "sqlite3:///db/msg_board.db"
 
@@ -25,8 +27,13 @@ get '/' do
 end
 
 post '/' do
-  Discussion.create(title: params[:discussion_title], body: params[:discussion_body])
-  redirect to('/')
+  user = User.find_by! username: params[:username]
+  if user.password == params[:password]
+    Discussion.create(title: params[:discussion_title], body: params[:discussion_body], user_id: user.id )
+    redirect to('/')
+  else
+    redirect to('/')
+  end
 end
 
 get '/discussion/:discussion_id' do
@@ -53,4 +60,8 @@ post '/search' do
   redirect to("/search/#{params[:search_text]}")
 end
 
+post '/new_user' do
+  User.create(username: params[:new_username], password: params[:new_password], acct_type: 'user')
+  redirect to '/'
 
+end
