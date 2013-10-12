@@ -8,6 +8,19 @@ require './app/models/user'
 set :database, ENV['DATABASE_URL'] || "sqlite3:///db/msg_board.db"
 
 
+def space_replacer(search_term)
+  search_term.gsub!( " ", "_" ) 
+end
+
+def wildcarder(search_param)
+  search_param.gsub!("_" , "%")
+  search_param.insert( 0 , '%')
+  search_param.insert(-1 , '%')
+end
+
+
+
+
 get '/' do
   @discussions = Discussion.all
   erb :index
@@ -37,18 +50,18 @@ end
 
 
 get '/search/:search_text' do
-  @results = Discussion.where(title: params[:search_text])
-  @results = Discussion.where("title like ?", "%#{params[:search_text]}%")
+  @discussion_results = Discussion.where("title || body like ?", "#{wildcarder(params[:search_text])}") 
+  
   erb :search
 end
 
 post '/search' do
+  space_replacer(params[:search_text])
   redirect to("/search/#{params[:search_text]}")
 end
 
-
 post '/new_user' do
-  User.create(username: params[:username], password: params[:password], acct_type: 'user')
+  User.create(username: params[:new_username], password: params[:new_password], acct_type: 'user')
   redirect to '/'
 
 end
