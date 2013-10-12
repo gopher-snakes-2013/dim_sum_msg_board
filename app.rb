@@ -43,7 +43,8 @@ end
 
 
 get '/search/:search_text' do
-  @results = Discussion.where("title like ?", "#{wildcarder(params[:search_text])}")
+  @discussion_results = Discussion.where("title || body like ?", "#{wildcarder(params[:search_text])}") 
+  
   erb :search
 end
 
