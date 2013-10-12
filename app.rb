@@ -6,6 +6,19 @@ require './app/models/post'
 set :database, ENV['DATABASE_URL'] || "sqlite3:///db/msg_board.db"
 
 
+def space_replacer(search_term)
+  search_term.gsub!( " ", "_" ) 
+end
+
+def wildcarder(search_param)
+  search_param.gsub!("_" , "%")
+  search_param.insert( 0 , '%')
+  search_param.insert(-1 , '%')
+end
+
+
+
+
 get '/' do
   @discussions = Discussion.all
   erb :index
@@ -27,5 +40,17 @@ post '/discussion/:discussion_id' do
   redirect to("/discussion/#{params[:discussion_id]}")
 end
 
+
+
+get '/search/:search_text' do
+  @discussion_results = Discussion.where("title || body like ?", "#{wildcarder(params[:search_text])}") 
+  
+  erb :search
+end
+
+post '/search' do
+  space_replacer(params[:search_text])
+  redirect to("/search/#{params[:search_text]}")
+end
 
 
