@@ -5,7 +5,7 @@ class AddUserIdToPostsAndDiscussions < ActiveRecord::Migration
   end
 
   def down
-    delete_column :discussions, :user_id
-    delete_column :posts, :user_id
+    remove_column :discussions, :user_id
+    remove_column :posts, :user_id
   end
 end
