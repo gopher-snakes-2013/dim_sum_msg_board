@@ -9,7 +9,7 @@ set :database, ENV['DATABASE_URL'] || "sqlite3:///db/msg_board.db"
 
 
 def space_replacer(search_term)
-  search_term.gsub!( " ", "_" ) 
+  search_term.gsub!( " ", "_" )
 end
 
 def wildcarder(search_param)
@@ -27,8 +27,8 @@ get '/' do
 end
 
 post '/' do
-  user = User.find_by! username: params[:username]
-  if user.password == params[:password]
+  user = User.find_by username: params[:username]
+  if user.try(:password) == params[:password]
     Discussion.create(title: params[:discussion_title], body: params[:discussion_body], user_id: user.id )
     redirect to('/')
   else
@@ -50,8 +50,8 @@ end
 
 
 get '/search/:search_text' do
-  @discussion_results = Discussion.where("title || body like ?", "#{wildcarder(params[:search_text])}") 
-  
+  @discussion_results = Discussion.where("title || body like ?", "#{wildcarder(params[:search_text])}")
+
   erb :search
 end
 

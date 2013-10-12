@@ -36,7 +36,7 @@
 <ul>
 <% @discussions.each do |discussion|%>
 <li><a href= "/discussion/<%= discussion.id %>"><%= discussion.title %></a>  by
-  <%= User.find(discussion.id).username %></li>
+  <%= User.find(discussion.user_id).username %></li>
 <% end %>
 </ul>
 
