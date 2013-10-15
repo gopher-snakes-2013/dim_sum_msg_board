@@ -1,7 +1,7 @@
 <a href="/">Home</a>
 <br>
 <h1><%= @discussion.title %></h1>
-<h3>by <%= User.find(@discussion.id).username %></h3>
+<h3>by <%= User.find(@discussion.user_id).username %></h3>
 
 <%= @discussion.body %>
 <br>
